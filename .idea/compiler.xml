@@ -12,9 +12,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="zenos" target="12" />
-      <module name="zenos-admin" target="12" />
-      <module name="zenos-core" target="12" />
+      <module name="zenos" target="1.8" />
+      <module name="zenos-admin" target="1.8" />
+      <module name="zenos-core" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
