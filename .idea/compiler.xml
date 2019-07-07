@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="zenos" />
+        <module name="zenos-admin" />
+        <module name="zenos-core" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="zenos" target="12" />
+      <module name="zenos-admin" target="12" />
+      <module name="zenos-core" target="12" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="zenos" options="-parameters" />
+      <module name="zenos-admin" options="-parameters" />
+      <module name="zenos-core" options="-parameters" />
+    </option>
+  </component>
+</project>
