@@ -20,7 +20,7 @@ public class LinkConditionVO extends BaseConditionVO {
     private Integer status;
     private Integer homePageDisplay;
 
-    public LinkConditionVO() {
+    public LinkConditionVO(String s, Object homePageDisplay) {
     }
 
     public LinkConditionVO(Integer status, Integer homePageDisplay) {
