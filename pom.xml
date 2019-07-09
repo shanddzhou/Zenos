@@ -8,6 +8,12 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <packaging>pom</packaging>
+    <modules>
+        <module>zenos-core</module>
+        <module>zenos-admin</module>
+    </modules>
+
     <groupId>com.zhoushan.blog</groupId>
     <artifactId>zenos</artifactId>
     <version>0.1</version>
