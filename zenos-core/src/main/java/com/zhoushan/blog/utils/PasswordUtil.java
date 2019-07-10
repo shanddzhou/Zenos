@@ -1,4 +1,4 @@
-package com.zhoushan.blog.util;
+package com.zhoushan.blog.utils;
 
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
@@ -10,7 +10,7 @@ import com.zhoushan.blog.business.consts.CommonConst;
  * @author zhooo
  * @version V1.0
  * @Title: PasswordUtil
- * @Package com.zhoushan.blog.util
+ * @Package com.zhoushan.blog.utils
  * @Description: 密码加密解密工具类
  * @date 2019/7/7 13:08
  */

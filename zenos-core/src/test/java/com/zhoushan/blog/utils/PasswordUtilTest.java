@@ -1,4 +1,4 @@
-package com.zhoushan.blog.util;
+package com.zhoushan.blog.utils;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
  * @author zhooo
  * @version V1.0
  * @Title: PasswordUtilTest
- * @Package com.zhoushan.blog.util
+ * @Package com.zhoushan.blog.utils
  * @Description: TODO
  * @date 2019/7/7 13:11
  */

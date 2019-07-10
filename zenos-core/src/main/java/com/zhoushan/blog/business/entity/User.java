@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zhoushan.blog.business.enums.*;
 import com.zhoushan.blog.framework.object.AbstractBO;
 import com.zhoushan.blog.persistence.beans.SysUser;
-import com.zhoushan.blog.util.PasswordUtil;
+import com.zhoushan.blog.utils.PasswordUtil;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
