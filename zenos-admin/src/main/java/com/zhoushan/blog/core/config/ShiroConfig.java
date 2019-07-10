@@ -1,11 +1,10 @@
 package com.zhoushan.blog.core.config;
 
-import com.zhoushan.blog.business.service.ShiroService;
+import com.zhoushan.blog.core.shiro.ShiroService;
 import com.zhoushan.blog.core.shiro.credentials.RetryLimitCredentialsMatcher;
 import com.zhoushan.blog.core.shiro.realm.shiroRealm.ShiroRealm;
 import com.zhoushan.blog.framework.property.RedisProperties;
 import com.zhoushan.blog.framework.property.ShiroProperties;
-import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

@@ -1,4 +1,4 @@
-package com.zhoushan.blog.business.service;
+package com.zhoushan.blog.core.shiro;
 
 import java.util.Map;
 

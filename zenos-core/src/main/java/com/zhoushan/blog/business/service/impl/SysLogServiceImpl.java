@@ -18,6 +18,7 @@ import com.zhoushan.blog.utils.RequestUtill;
 import com.zhoushan.blog.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
@@ -34,6 +35,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2019/7/8 22:50
  */
+@Service
 public class SysLogServiceImpl implements SysLogService {
     @Autowired
     private SysLogMapper sysLogMapper;

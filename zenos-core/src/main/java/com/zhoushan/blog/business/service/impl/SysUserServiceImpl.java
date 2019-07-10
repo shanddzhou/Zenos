@@ -17,6 +17,7 @@ import com.zhoushan.blog.persistence.mapper.SysUserMapper;
 import com.zhoushan.blog.utils.IpUtil;
 import com.zhoushan.blog.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
@@ -34,6 +35,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2019/7/9 16:25
  */
+@Service
 public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserMapper sysUserMapper;

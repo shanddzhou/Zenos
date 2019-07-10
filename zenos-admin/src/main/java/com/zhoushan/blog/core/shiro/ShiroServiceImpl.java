@@ -1,8 +1,7 @@
-package com.zhoushan.blog.business.service.impl;
+package com.zhoushan.blog.core.shiro;
 
 import com.zhoushan.blog.business.entity.Resources;
 import com.zhoushan.blog.business.entity.User;
-import com.zhoushan.blog.business.service.ShiroService;
 import com.zhoushan.blog.business.service.SysResourcesService;
 import com.zhoushan.blog.business.service.SysUserService;
 import com.zhoushan.blog.core.shiro.realm.shiroRealm.ShiroRealm;
@@ -43,7 +42,7 @@ public class ShiroServiceImpl implements ShiroService {
     private SysUserService sysUserService;
 
     /**
-     * 初始化权限s
+     * 初始化权限
      *
      * @return
      */
