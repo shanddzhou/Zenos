@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zhoushan.blog.persistence.mapper.SysResourcesMapper">
+    <resultMap id="rm" type="com.zhoushan.blog.persistence.beans.SysResources">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="url" column="url" jdbcType="VARCHAR"/>
+        <result property="permission" column="permission" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="external" column="external" jdbcType="BIT"/>
+        <result property="available" column="available" jdbcType="BIT"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+        <result property="checked" column="checked" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <association property="parent" javaType="com.zhoushan.blog.persistence.beans.SysResources">
+            <result property="id" jdbcType="BIGINT" column="parent_id"/>
+            <result property="name" jdbcType="VARCHAR" column="parent_name"/>
+            <result property="type" jdbcType="VARCHAR" column="parent_type"/>
+            <result property="url" jdbcType="VARCHAR" column="parent_url"/>
+            <result property="parentId" jdbcType="BIGINT" column="parent_parent_id"/>
+            <result property="permission" jdbcType="VARCHAR" column="parent_permission"/>
+            <result property="available" jdbcType="BIT" column="parent_available"/>
+            <result property="icon" jdbcType="VARCHAR" column="parent_icon"/>
+        </association>
+        <collection property="nodes" column="node_id" javaType="ArrayList"
+                    ofType="com.zhoushan.blog.persistence.beans.SysResources">
+            <result property="id" jdbcType="BIGINT" column="node_id"/>
+            <result property="name" jdbcType="VARCHAR" column="node_name"/>
+            <result property="type" jdbcType="VARCHAR" column="node_type"/>
+            <result property="url" jdbcType="VARCHAR" column="node_url"/>
+            <result property="parentId" jdbcType="BIGINT" column="node_parent_id"/>
+            <result property="permission" jdbcType="VARCHAR" column="node_permission"/>
+            <result property="available" jdbcType="BIT" column="node_available"/>
+            <result property="icon" jdbcType="VARCHAR" column="node_icon"/>
+        </collection>
+
+    </resultMap>
+
+
+    <select id="findPageBreakByCondition" parameterType="com.zhoushan.blog.business.vo.ResourcesConditionVO" resultMap="rm">
+        SELECT
+        com.*,
+        f.id parent_id,
+        f.`name` parent_name,
+        f.`icon` parent_icon,
+        f.type parent_type
+        FROM
+        sys_resources com
+        LEFT JOIN sys_resources f ON com.parent_id = f.id
+        WHERE
+        1 = 1
+        <if test="keywords !=null and keywords != ''">
+            AND (
+            com.name LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
+            com.url LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
+            com.permission LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+            )
+        </if>
+        ORDER by
+        com.parent_id ASC,
+        com.name DESC
+    </select>
+    <select id="listUserResources" parameterType="java.util.HashMap" resultMap="rm">
+        SELECT
+        re.id,
+        re.`name`,
+        re.parent_id,
+        re.url,
+        re.permission,
+        re.icon,
+        node.id AS node_id,
+        node.`name` AS node_name,
+        node.`type` AS node_type,
+        node.`url` AS node_url,
+        node.parent_id AS node_parent_id,
+        node.`permission` AS node_permission,
+        node.`available` AS node_available,
+        node.icon AS node_icon
+        FROM
+        sys_resources re
+        LEFT JOIN sys_role_resources rr ON re.id = rr.resources_id
+        LEFT JOIN sys_user_role ur ON rr.role_id = ur.role_id
+        LEFT JOIN sys_resources node ON node.parent_id = re.id AND node.available = 1
+        WHERE
+        (re.parent_id = 0 OR re.parent_id IS NULL )
+        AND re.available = 1
+        <if test="userId != null">
+            AND ur.user_id = #{userId}
+        </if>
+        <if test="type != null">
+            AND re.type= #{type}
+        </if>
+        ORDER BY
+        re.sort ASC,
+        node.sort ASC
+    </select>
+
+
+</mapper>
