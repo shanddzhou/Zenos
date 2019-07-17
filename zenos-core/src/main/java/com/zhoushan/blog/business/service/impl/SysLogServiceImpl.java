@@ -14,7 +14,7 @@ import com.zhoushan.blog.business.service.SysLogService;
 import com.zhoushan.blog.business.vo.LogConditionVO;
 import com.zhoushan.blog.persistence.beans.SysLog;
 import com.zhoushan.blog.persistence.mapper.SysLogMapper;
-import com.zhoushan.blog.utils.RequestUtill;
+import com.zhoushan.blog.utils.RequestUtil;
 import com.zhoushan.blog.utils.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -59,15 +59,15 @@ public class SysLogServiceImpl implements SysLogService {
     @Override
     @Async
     public void asyncAddSystemLog(PlatformEnum platform, String businessName) {
-        String ua = RequestUtill.getUa();
+        String ua = RequestUtil.getUa();
         Log log = new Log();
         log.setUa(ua);
         log.setLogLevel(LogLevelEnum.INFO);
-        log.setIp(RequestUtill.getIp());
+        log.setIp(RequestUtil.getIp());
         log.setType(PlatformEnum.WEB.equals(platform) ? LogTypeEnum.VISIT : LogTypeEnum.SYSTEM);
-        log.setReferer(RequestUtill.getReferer());
-        log.setRequestUrl(RequestUtill.getRequestUrl());
-        log.setParams(JSONObject.toJSONString(RequestUtill.getParametersMap()));
+        log.setReferer(RequestUtil.getReferer());
+        log.setRequestUrl(RequestUtil.getRequestUrl());
+        log.setParams(JSONObject.toJSONString(RequestUtil.getParametersMap()));
         User user = SessionUtil.getUser();
         if (null != user) {
             log.setUserId(user.getId());

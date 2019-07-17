@@ -28,7 +28,6 @@ import java.util.*;
 public class SysResourcesServiceImpl implements SysResourcesService {
     @Autowired
     private SysResourcesMapper sysResourcesMapper;
-
     @Override
     public PageInfo<Resources> findPageBreakByCondition(ResourcesConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());

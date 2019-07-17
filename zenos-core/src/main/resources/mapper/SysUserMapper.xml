@@ -3,8 +3,8 @@
 
 <mapper namespace="com.zhoushan.blog.persistence.mapper.SysUserMapper">
     <resultMap id="rm" type="com.zhoushan.blog.persistence.beans.SysUser">
-        <id property="id" column="id" javaType="BIGINT"/>
-        <result property="username" column="username" javaType="VARCHAR"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
         <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
@@ -71,12 +71,9 @@
         </if>
     </select>
     <select id="listByRoleId" resultMap="rm" parameterType="Long">
-        SELECT
-        u.*
-        from
-        sys_user u
-        INNER JOIN sys_role r ON r.user_id=u.id
-        WHERE
-        r.id=#{roleId}
+        SELECT u.*
+        from sys_user u
+                 INNER JOIN sys_role r ON r.user_id = u.id
+        WHERE r.id = #{roleId}
     </select>
 </mapper>

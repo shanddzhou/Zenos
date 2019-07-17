@@ -1,0 +1,31 @@
+server:
+  tomcat:
+    basedir: /var/tmp/website-zenos-admin
+spring:
+  profiles:
+    include: [center-dev]
+  redis:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+
+    timeout: 5000ms
+    expire: 2592000
+
+# logging settings
+logging:
+  path: /var/tmp/website-zenos-admin
+####################################自定义配置##########################################
+app:
+  # 是否启用kaptcha验证码
+  enableKaptcha: false
+  # shiro配置项
+  shiro:
+    loginUrl: "/passport/login/"
+    successUrl: "/"
+    unauthorizedUrl: "/error/403"
+####################################自定义配置##########################################
+

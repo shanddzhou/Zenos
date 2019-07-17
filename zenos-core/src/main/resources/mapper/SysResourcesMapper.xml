@@ -100,91 +100,70 @@
         node.sort ASC
     </select>
     <select id="queryResourcesListWithSelected" parameterType="Long" resultMap="rm">
-		SELECT
-            re.id,
-            re.`name`,
-            re.parent_id,
-            re.url,
-            re.type,
-            re.icon,
-            (
-                CASE
-                WHEN EXISTS (
-                    SELECT
-                        1
-                    FROM
-                        sys_role_resources rr
-                    WHERE
-                        rr.resources_id = re.id
-                    AND rr.role_id = #{rid}
-                )
-                    THEN
-                        'true'
-                    ELSE
-                        'false'
-                    END
-            ) AS checked
-        FROM
-            sys_resources re
-        ORDER BY
-            re.sort ASC
-	</select>
-
-
+        SELECT re.id,
+               re.`name`,
+               re.parent_id,
+               re.url,
+               re.type,
+               re.icon,
+               (
+                   CASE
+                       WHEN EXISTS(
+                               SELECT 1
+                               FROM sys_role_resources rr
+                               WHERE rr.resources_id = re.id
+                                 AND rr.role_id = #{rid}
+                           )
+                           THEN
+                           'true'
+                       ELSE
+                           'false'
+                       END
+                   ) AS checked
+        FROM sys_resources re
+        ORDER BY re.sort ASC
+    </select>
     <select id="listUrlAndPermission" resultMap="rm">
-        SELECT
-        url,
-        permission
-        FROM
-        sys_resources
-        WHERE
-        url is not null
-        order by
-        sort asc
+        SELECT url,
+               permission
+        FROM sys_resources
+        WHERE url is not null
+        order by sort asc
     </select>
     <select id="listAllAvailableMenu" resultMap="rm">
-      SELECT
-      r.id,
-      r.name,
-      node.id as node_id,
-      node.name as node_name,
-      node.parent_id
-      from
-      sys_resources r
-      left join sys_resources node on(
-        node.parent_id=id
-        AND node.available=1
-        AND node.type='menu'
-      )
-      WHERE
-      r.available=1
-      AND r.type='menu'
-      AND (r.url IS NULL OR r.url = '')
-        AND (r.permission IS NULL OR r.permission = '')
-        ORDER BY
-            r.sort ASC,
-            node.sort ASC
+        SELECT r.id,
+               r.name,
+               node.id   as node_id,
+               node.name as node_name,
+               node.parent_id
+        from sys_resources r
+                 left join sys_resources node on (
+                node.parent_id = id
+                AND node.available = 1
+                AND node.type = 'menu'
+            )
+        WHERE r.available = 1
+          AND r.type = 'menu'
+          AND (r.url IS NULL OR r.url = '')
+          AND (r.permission IS NULL OR r.permission = '')
+        ORDER BY r.sort ASC,
+                 node.sort ASC
     </select>
     <select id="listByUserId" resultMap="rm" parameterType="Long">
-      SELECT
-            re.id,
-            re.`name`,
-            re.parent_id,
-            re.url,
-            re.permission,
-            re.icon,
-            re.sort
-        FROM
-            sys_resources re
-        INNER JOIN sys_role_resources rr ON re.id = rr.resources_id
-        INNER JOIN sys_user_role ur ON rr.role_id = ur.role_id
-        WHERE
-            ur.user_id = #{userId}
-        AND re.available = 1
-        ORDER BY
-            re.parent_id ASC,
-            re.sort ASC
+        SELECT re.id,
+               re.`name`,
+               re.parent_id,
+               re.url,
+               re.permission,
+               re.icon,
+               re.sort
+        FROM sys_resources re
+                 INNER JOIN sys_role_resources rr ON re.id = rr.resources_id
+                 INNER JOIN sys_user_role ur ON rr.role_id = ur.role_id
+        WHERE ur.user_id = #{userId}
+          AND re.available = 1
+        ORDER BY re.parent_id ASC,
+                 re.sort ASC
     </select>
-
 
 </mapper>

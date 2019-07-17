@@ -23,7 +23,7 @@ spring:
     allow-request-override: false
     allow-session-override: false
     cache: false
-    charset: utf-8
+    charset: UTF-8
     check-template-location: true
     content-type: text/html
     enabled: true
@@ -34,7 +34,7 @@ spring:
     suffix: .ftl
     template-loader-path: classpath:/templates/
     settings:
-      templates_update_delay: 0
+      template_update_delay: 0
       default_encoding: UTF-8
       classic_compatible: true
 
@@ -63,12 +63,12 @@ spring:
 #Mybatis
 mybatis:
   type-aliases-package: com.zhoushan.blog.persistence.beans
-  mapper-locations: classpath:/mybatis/*.xml
+  mapper-locations: classpath:/mapper/*.xml
 
 #Mapper
 mapper:
   mappers:
-    - com.zhoushan.blog.plugin.BaseMapper
+    - com.zhoushan.blog.framework.object.BaseMapper
   not-empty: false
   identify: MYSQL
 

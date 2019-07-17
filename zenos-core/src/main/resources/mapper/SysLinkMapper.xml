@@ -10,8 +10,8 @@
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="favicon" column="favicon" jdbcType="VARCHAR"/>
         <result property="qq" column="qq" jdbcType="VARCHAR"/>
-        <result property="homePageDisplay" column="home_page_display" jdbcType="INT"/>
-        <result property="status" column="status" jdbcType="INT"/>
+        <result property="homePageDisplay" column="home_page_display" jdbcType="BIT"/>
+        <result property="status" column="status" jdbcType="BIT"/>
         <result property="remark" column="remark" jdbcType="VARCHAR"/>
         <result property="source" column="source" jdbcType="VARCHAR"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
